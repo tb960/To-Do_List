@@ -1,0 +1,34 @@
+<%- include("header") -%>
+
+<div class="dropdown">
+
+  <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Your List
+  </button>
+
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <% lists.forEach(function(list) { %>
+    <div class="dropdown-item">
+      <a href="/lists/<%= list.name %>"><%= list.name %></a>
+      <form action="/delete-list" method="post">
+        <button class="btn delete-btn" type="submit" name="delete" value=<%= list._id %>><i class="far fa-trash-alt"></i></button>
+      </form>
+    </div>
+    <% }); %>
+  </div>
+
+</div>
+
+<div class="container-fluid center-screen">
+  
+  <h1 class="heading"><%= day %></h1>
+
+  <form action="/" method="post">
+    <input type="text" name="listTitle" placeholder="List Name" autocomplete="off" required>
+    <input type="hidden" name="status" value="createList"></input>
+    <button type="submit" class="btn btn-secondary btn-lg create-list-btn">Create list</button>
+  </form>
+
+</div>
+
+<%- include("footer") -%>
